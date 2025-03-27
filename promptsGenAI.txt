@@ -1,3 +1,6 @@
+Step 1
+======
+
 create a openapi spec for an app that has sudents, classes, professors and departments
 * a student has name, birth date, address and phone
 * a student is enrolled in many classes
@@ -19,3 +22,8 @@ Some queries that need to be supported
 * a count of all students in a class
 * a count of all students in a department
 * a list of classes order by the number of students enrolled in it 
+
+Step 2
+======
+implement a backend for this openapi yaml in typescript. Use an in-memory database to store data
+add data validation and error handling. save the files in my repo
