@@ -1,0 +1,333 @@
+openapi: 3.0.0
+info:
+  title: School Management API
+  version: 1.0.0
+  description: This is an API for managing students, classes, professors, and departments in a school.
+
+paths:
+  /students:
+    get:
+      summary: List all students
+      responses:
+        '200':
+          description: A list of students
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+    post:
+      summary: Create a student
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+      responses:
+        '201':
+          description: Student created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+
+  /students/{studentId}:
+    get:
+      summary: Get a student by ID
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A single student
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+
+  /classes:
+    get:
+      summary: List all classes
+      responses:
+        '200':
+          description: A list of classes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Class'
+    post:
+      summary: Create a class
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Class'
+      responses:
+        '201':
+          description: Class created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Class'
+
+  /classes/{classId}:
+    get:
+      summary: Get a class by ID
+      parameters:
+        - name: classId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A single class
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Class'
+
+  /classes/{classId}/students:
+    get:
+      summary: List all students for a class
+      parameters:
+        - name: classId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of students
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+
+  /departments:
+    get:
+      summary: List all departments
+      responses:
+        '200':
+          description: A list of departments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Department'
+    post:
+      summary: Create a department
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+      responses:
+        '201':
+          description: Department created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+
+  /departments/{departmentId}:
+    get:
+      summary: Get a department by ID
+      parameters:
+        - name: departmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A single department
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+
+  /departments/{departmentId}/classes:
+    get:
+      summary: List all classes in a department
+      parameters:
+        - name: departmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of classes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Class'
+
+  /departments/{departmentId}/professors:
+    get:
+      summary: List all professors in a department
+      parameters:
+        - name: departmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of professors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Professor'
+
+  /professors:
+    get:
+      summary: List all professors
+      responses:
+        '200':
+          description: A list of professors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Professor'
+    post:
+      summary: Create a professor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Professor'
+      responses:
+        '201':
+          description: Professor created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professor'
+
+  /professors/{professorId}:
+    get:
+      summary: Get a professor by ID
+      parameters:
+        - name: professorId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A single professor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professor'
+
+components:
+  schemas:
+    Student:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        birthDate:
+          type: string
+          format: date
+        address:
+          type: string
+        phone:
+          type: string
+        enrolledClasses:
+          type: array
+          items:
+            type: string
+
+    Class:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        term:
+          type: string
+        students:
+          type: array
+          items:
+            type: string
+        professor:
+          type: string
+        department:
+          type: string
+
+    Professor:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        address:
+          type: string
+        phone:
+          type: string
+        hireDate:
+          type: string
+          format: date
+        classes:
+          type: array
+          items:
+            type: string
+
+    Department:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        headOfDepartment:
+          type: string
+        classes:
+          type: array
+          items:
+            type: string
+
+  responses:
+    NotFound:
+      description: Entity not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
