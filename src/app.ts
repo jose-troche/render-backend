@@ -2,12 +2,16 @@ import express from 'express';
 import { Database } from './database';
 import { Validators } from './validators';
 import { ValidationError, NotFoundError } from './errors';
-import { Student, Class, Professor, Department } from './types';
 
 const app = express();
 const db = new Database();
 
 app.use(express.json());
+
+// Swagger documentation
+app.use(express.static('public'));
+app.get(['/', '/doc', '/docs'], (_, res) => res.redirect('/docs.html'));
+app.use(express.static('node_modules/swagger-ui-dist'));
 
 // Error handling middleware
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {

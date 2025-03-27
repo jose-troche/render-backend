@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/swagger-ui.css" />
+    <title>Copilot application API</title>
+  </head>
+  <body>
+    <div id="swagger-ui" />
+    <script src="/swagger-ui-bundle.js"></script>
+    <!-- `SwaggerUIBundle` is now available on the page -->
+    <script>
+      const ui = SwaggerUIBundle({
+        url: '/schoolAPI.yaml',
+        dom_id: '#swagger-ui',
+        layout: 'BaseLayout',
+        deepLinking: true,
+        showExtensions: false,
+        showCommonExtensions: false,
+        presets: [SwaggerUIBundle.presets.apis, SwaggerUIBundle.SwaggerUIStandalonePreset],
+      });
+    </script>
+  </body>
+</html>
