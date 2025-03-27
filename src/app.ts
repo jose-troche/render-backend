@@ -15,7 +15,7 @@ app.use(express.static('node_modules/swagger-ui-dist'));
 
 // Error handling middleware
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
-    if (err instanceof ValidationError) {
+    if (err instanceof ValidationError || err instanceof SyntaxError) {
         return res.status(400).json({ message: err.message });
     }
     if (err instanceof NotFoundError) {
