@@ -32,16 +32,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Student'
+        '400':
+          $ref: '#/components/responses/BadRequest'
 
   /students/{studentId}:
+    parameters:
+      - name: studentId
+        in: path
+        required: true
+        schema:
+          type: string
     get:
       summary: Get a student by ID
-      parameters:
-        - name: studentId
-          in: path
-          required: true
-          schema:
-            type: string
       responses:
         '200':
           description: A single student
@@ -49,6 +51,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Student'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      summary: Update a student
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+      responses:
+        '200':
+          description: Student updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Delete a student
+      responses:
+        '204':
+          description: Student deleted
+        '404':
+          $ref: '#/components/responses/NotFound'
 
   /classes:
     get:
@@ -77,16 +107,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Class'
+        '400':
+          $ref: '#/components/responses/BadRequest'
 
   /classes/{classId}:
+    parameters:
+      - name: classId
+        in: path
+        required: true
+        schema:
+          type: string
     get:
       summary: Get a class by ID
-      parameters:
-        - name: classId
-          in: path
-          required: true
-          schema:
-            type: string
       responses:
         '200':
           description: A single class
@@ -94,6 +126,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Class'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      summary: Update a class
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Class'
+      responses:
+        '200':
+          description: Class updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Class'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Delete a class
+      responses:
+        '204':
+          description: Class deleted
+        '404':
+          $ref: '#/components/responses/NotFound'
 
   /classes/{classId}/students:
     get:
@@ -113,6 +173,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Student'
+        '404':
+          $ref: '#/components/responses/NotFound'
 
   /departments:
     get:
@@ -141,16 +203,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Department'
+        '400':
+          $ref: '#/components/responses/BadRequest'
 
   /departments/{departmentId}:
+    parameters:
+      - name: departmentId
+        in: path
+        required: true
+        schema:
+          type: string
     get:
       summary: Get a department by ID
-      parameters:
-        - name: departmentId
-          in: path
-          required: true
-          schema:
-            type: string
       responses:
         '200':
           description: A single department
@@ -158,6 +222,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Department'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      summary: Update a department
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+      responses:
+        '200':
+          description: Department updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Delete a department
+      responses:
+        '204':
+          description: Department deleted
+        '404':
+          $ref: '#/components/responses/NotFound'
 
   /departments/{departmentId}/classes:
     get:
@@ -177,6 +269,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Class'
+        '404':
+          $ref: '#/components/responses/NotFound'
 
   /departments/{departmentId}/professors:
     get:
@@ -196,6 +290,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Professor'
+        '404':
+          $ref: '#/components/responses/NotFound'
 
   /professors:
     get:
@@ -224,16 +320,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Professor'
+        '400':
+          $ref: '#/components/responses/BadRequest'
 
   /professors/{professorId}:
+    parameters:
+      - name: professorId
+        in: path
+        required: true
+        schema:
+          type: string
     get:
       summary: Get a professor by ID
-      parameters:
-        - name: professorId
-          in: path
-          required: true
-          schema:
-            type: string
       responses:
         '200':
           description: A single professor
@@ -241,11 +339,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Professor'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      summary: Update a professor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Professor'
+      responses:
+        '200':
+          description: Professor updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professor'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Delete a professor
+      responses:
+        '204':
+          description: Professor deleted
+        '404':
+          $ref: '#/components/responses/NotFound'
 
 components:
   schemas:
     Student:
       type: object
+      required:
+        - name
       properties:
         id:
           type: string
@@ -265,6 +393,9 @@ components:
 
     Class:
       type: object
+      required:
+        - name
+        - term
       properties:
         id:
           type: string
@@ -285,6 +416,8 @@ components:
 
     Professor:
       type: object
+      required:
+        - name
       properties:
         id:
           type: string
@@ -304,6 +437,8 @@ components:
 
     Department:
       type: object
+      required:
+        - name
       properties:
         id:
           type: string
@@ -318,6 +453,12 @@ components:
           items:
             type: string
 
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+
   responses:
     NotFound:
       description: Entity not found.
@@ -325,9 +466,10 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
+    
+    BadRequest:
+      description: Invalid request payload.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

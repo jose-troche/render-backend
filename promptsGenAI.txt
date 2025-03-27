@@ -12,6 +12,7 @@ create a openapi spec for an app that has sudents, classes, professors and depar
 * a professor can teach several classes
 * a department has name, description, and head of department
 * a department has several classes
+* The spec should support all CRUD operations
 
 Some queries that need to be supported
 * a list of all students for a class
@@ -25,9 +26,10 @@ Some queries that need to be supported
 
 Step 2
 ======
-<Open the yaml file and open gen ai assistant>
+<Open the yaml file and open gen ai assistant. Select Claude>
 * implement a typescript backend for this openapi yaml 
 * use an in-memory database to store data
 * auto create IDs when objects are created
 * include data validation and error handling
-* zip all generated files and let me download them
+--
+* add all CRUD operations (to src/app.ts)
