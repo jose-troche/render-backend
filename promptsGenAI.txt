@@ -25,5 +25,9 @@ Some queries that need to be supported
 
 Step 2
 ======
-implement a backend for this openapi yaml in typescript. Use an in-memory database to store data
-add data validation and error handling. save the files in my repo
+<Open the yaml file and open gen ai assistant>
+* implement a typescript backend for this openapi yaml 
+* use an in-memory database to store data
+* auto create IDs when objects are created
+* include data validation and error handling
+* zip all generated files and let me download them
