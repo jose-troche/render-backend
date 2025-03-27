@@ -1,0 +1,21 @@
+create a openapi spec for an app that has sudents, classes, professors and departments
+* a student has name, birth date, address and phone
+* a student is enrolled in many classes
+* a class has a name, description and term
+* a class has many students
+* a class has one professor
+* a class belongs to one department
+* a professor has a name, address, phone, hire date
+* a professor can teach several classes
+* a department has name, description, and head of department
+* a department has several classes
+
+Some queries that need to be supported
+* a list of all students for a class
+* a list of all classes in a department, including the professors that teach each class
+* a list of all classes for a student
+* a list of all classes for a department
+* a list of all professors that teach in a department
+* a count of all students in a class
+* a count of all students in a department
+* a list of classes order by the number of students enrolled in it 
