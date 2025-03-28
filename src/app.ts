@@ -3,9 +3,11 @@ import cors from 'cors';
 import { Database } from './database';
 import { Validators } from './validators';
 import { ValidationError, NotFoundError } from './errors';
+import { seedDatabase } from './seedDatabase';
 
 const app = express();
 const db = new Database();
+seedDatabase(db);
 
 app.use(express.json());
 
