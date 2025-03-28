@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import { Database } from './database';
 import { Validators } from './validators';
 import { ValidationError, NotFoundError } from './errors';
@@ -7,6 +8,8 @@ const app = express();
 const db = new Database();
 
 app.use(express.json());
+
+app.use(cors());
 
 // Swagger documentation
 app.use(express.static('public'));
